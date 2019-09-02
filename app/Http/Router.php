@@ -36,6 +36,10 @@ class Router
 
     }
 
+    /**
+     * @param $route
+     * @param $controller
+     */
     public function get($route, $controller)
     {
         try {
@@ -46,6 +50,10 @@ class Router
         }
     }
 
+    /**
+     * @param $route
+     * @param $controller
+     */
     public function post($route, $controller)
     {
         try {
@@ -57,7 +65,7 @@ class Router
     }
 
 
-    public function run()
+    public function run() : void
     {
         try {
             if (isset($this->routes[$this->method()][$this->uri()])) {
@@ -75,7 +83,7 @@ class Router
 
 
             } else {
-                echo "Error 404";
+                require DIR_PUBLIC . "views\\error\\404.php";
             }
         } catch (\Exception $e) {
             echo $e->getMessage();
@@ -83,13 +91,18 @@ class Router
         }
     }
 
-
-    public function method()
+    /**
+     * @return string
+     */
+    public function method() : string
     {
         return isset($_SERVER['REQUEST_METHOD']) ? strtolower($_SERVER['REQUEST_METHOD']) : 'cli';
     }
 
-    public function uri()
+    /**
+     * @return string|string[]|null
+     */
+    public function uri() : string
     {
         $self = isset($_SERVER['PHP_SELF']) ? str_replace('index.php/', '', $_SERVER['PHP_SELF']) : '';
         $uri = isset($_SERVER['REQUEST_URI']) ? explode('?', $_SERVER['REQUEST_URI'])[0] : '';
@@ -103,8 +116,11 @@ class Router
         return $uri;
     }
 
-
-    public function setController($controller)
+    /**
+     * @param $controller
+     * @return array
+     */
+    public function setController($controller) : array
     {
         $action = explode('@', $controller);
         return $action;
