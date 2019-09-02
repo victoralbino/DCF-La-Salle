@@ -11,7 +11,10 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Enumeration\\": "Enumeration/",
+            "Database\\": "DataBase/"
+
         }
     }
 }

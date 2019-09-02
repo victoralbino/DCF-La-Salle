@@ -1,0 +1,23 @@
+{
+  "name": "dcf-la-salle",
+  "version": "1.0.0",
+  "description": "College work application",
+  "main": "index.js",
+  "dependencies": {
+    "bootstrap-material-design": "^4.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/victoralbino/DCF-La-Salle.git"
+  },
+  "author": "Victor Damacena Albino",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/victoralbino/DCF-La-Salle/issues"
+  },
+  "homepage": "https://github.com/victoralbino/DCF-La-Salle#readme"
+}

@@ -8,6 +8,6 @@ $router = new Router();
 
 $router->get( '/', 'HomeController@index');
 $router->get( '/home', 'HomeController@teste');
-$router->post( '/', 'HomeController@index');
+$router->post( '/save', 'HomeController@saveCustomer');
 
 $router->run();
