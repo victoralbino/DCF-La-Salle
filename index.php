@@ -1,7 +1,7 @@
 <?php
 
 define('DIR_APP', __DIR__ . "\\app\\");
-define('DIR_PUBLIC', __DIR__ . '\\app\\public\\');
+define('DIR_PUBLIC', __DIR__ . '\\public\\');
 
 $uri = urldecode(
     parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)

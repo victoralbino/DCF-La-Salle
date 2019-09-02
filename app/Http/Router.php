@@ -76,13 +76,14 @@ class Router
                 $class = "App\\Controller\\" . $controller;
                 $controller = new ReflectionClass($class);
                 if (!$controller->hasMethod($function)) {
-                    throw new \Exception("Erro ao chamar método: " . $function . "() da classe: " . $controller->getName());
+                    throw new \Exception("Erro ao chamar função: " . $function . "() da classe: " . $controller->getName());
                 }
 
                 call_user_func(array($controller->newInstance(), $function));
 
 
             } else {
+                http_response_code(404);
                 require DIR_PUBLIC . "views\\error\\404.php";
             }
         } catch (\Exception $e) {
