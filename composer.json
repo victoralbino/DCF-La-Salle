@@ -1,0 +1,17 @@
+{
+    "name": "victordamacena/dcflasalle",
+    "description": "College work application",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Victor Damacena Albino",
+            "email": "victordamacenaalbino@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+}
