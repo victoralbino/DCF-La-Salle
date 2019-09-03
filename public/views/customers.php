@@ -52,6 +52,14 @@ use App\Customer;
             </thead>
             <tbody>
             <?php
+                if (count(Customer::selectAll()) == 0){
+            ?>
+            <tr class="text-center">
+                <td colspan="5">Nenhum Cliente Cadastrado</td>
+            </tr>
+
+            <?php
+            }
                 foreach (Customer::selectAll() as $customer){
             ?>
             <tr>
