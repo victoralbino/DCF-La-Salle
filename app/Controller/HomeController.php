@@ -4,12 +4,18 @@ namespace App\Controller;
 
 
 use App\Customer;
+use Enumeration\Country;
 
 class HomeController extends Controller
 {
     public function index()
     {
         return $this->view("welcome");
+    }
+
+    public function show()
+    {
+        return $this->view("customers");
     }
 
     public function saveCustomer()
@@ -26,6 +32,8 @@ class HomeController extends Controller
             return $this->redirect('/', $errors, true);
         }
 
+        $_POST['country'] = Country::returnNameFromAcronym($_POST['country']);
+
         $customer = new Customer(
             $_POST['firstName'],
             $_POST['lastName'],
@@ -34,7 +42,21 @@ class HomeController extends Controller
             $_POST['areaOfInterest']
         );
 
-        var_dump($customer);
+        $conn = new \PDO("sqlite:". DIR_DATABASE ."database.sqlite");
+        $sql = 'INSERT INTO customers VALUES (:firstName, :lastName, :email, :country, :areaOfInterest)';
+        $smtp = $conn->prepare($sql);
+        $smtp->bindValue(':firstName', $customer->firstName);
+        $smtp->bindValue(':lastName', $customer->lastName);
+        $smtp->bindValue(':email', $customer->email);
+        $smtp->bindValue(':country', $customer->country);
+        $smtp->bindValue(':areaOfInterest', $customer->areaOfInterest);
+
+        if ($smtp->execute()){
+            return $this->redirect('/', ["saved" => true]);
+        }else{
+            return $this->redirect('/', ["saved" => true]);
+        }
+
 
     }
 }

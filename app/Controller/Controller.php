@@ -17,18 +17,16 @@ class Controller
     {
         $params = '?';
         if ($errors){
-            var_dump($variables);
             foreach ($variables as $error){
                 $params .= $error['input'] . '=' . $error['rule'] .'&';
             }
         }else{
             if (count($variables) > 0){
-                foreach ($variables as $var){
-                    $params .= $var . '=' . $var['value'] . '&';
+                foreach ($variables as $key => $value){
+                    $params .= $key . '=' . $value . '&';
                 }
             }
         }
-
         header('Location:' . $url . $params);
     }
 

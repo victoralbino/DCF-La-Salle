@@ -2,16 +2,20 @@
 
 namespace Database;
 
-class SQLiteConnection
-{
-    const PATH_TO_SQLITE_FILE = __DIR__ . 'database.db';
-    private $pdo;
 
-    public function connect()
+use PDO;
+
+class SQLiteConnection extends PDO
+{
+    private $conn;
+
+    public function __construct()
     {
-        if ($this->pdo == null) {
-            $this->pdo = new \PDO("sqlite:" . self::PATH_TO_SQLITE_FILE);
+        try {
+            $this->conn = new \PDO("sqlite:database.sqlite");
+        } catch (\Exception $e) {
+            die("Erro ao conectar com o Banco de Dados");
         }
-        return $this->pdo;
     }
+
 }

@@ -2,15 +2,6 @@
 require 'vendor/autoload.php';
 
 use Enumeration\Rules;
-use Database\SQLiteConnection ;
-
-
-
-$pdo = (new SQLiteConnection ())->connect();
-if ($pdo != null)
-    echo 'Connected to the SQLite database successfully!';
-else
-    echo 'Whoops, could not connect to the SQLite database!';
 ?>
 <!doctype html>
 <html lang="pt-br">
@@ -43,6 +34,18 @@ else
             felis vulputate, eget posuere neque congue.
         </p>
     </div>
+    <?php if (isset($_GET['saved']) && $_GET['saved'] == true){ ?>
+    <div class="alert alert-success" role="alert">
+        Cliente Salvo com sucesso!
+    </div>
+    <?php }else if (isset($_GET['saved']) && $_GET['saved'] != true){ ?>
+        <div class="alert alert-danger" role="alert">
+            Erro ao salvar cliente!
+        </div>
+    <?php } ?>
+    <p class="text-center mb-5">
+        <a href="/customers" class="btn btn-secondary my-2">Listar Clientes</a>
+    </p>
 
     <form action="/save" method="post">
         <div class="row">

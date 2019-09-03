@@ -252,6 +252,16 @@ class Country
         'ZW' => 'Zimbabwe',
     );
 
+    public static function returnNameFromAcronym($sigla)
+    {
+        foreach (self::COUNTRIES_ARRAY as $key => $value){
+            if ($key == $sigla){
+                return $value;
+            }
+        }
+        return "Nao encontrado";
+    }
+
     public static function getCountriesJson()
     {
         return json_encode(self::COUNTRIES_ARRAY);
